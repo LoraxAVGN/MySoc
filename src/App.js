@@ -213,7 +213,7 @@ class App extends React.Component{
             <StoreContext.Provider value={stateAndFunc}> 
                 <BrowserRouter>
                     <Route path="/timeline"><Home /></Route>
-                    <Route exact path="/loraxavgn.github.io/MySoc/">
+                    <Route path="/MySoc">
                         <Login 
                             clickLoginButton={clickLoginButton} 
                             currentPerson={localStorage.getItem('currentPerson') ? JSON.parse(localStorage.getItem('currentPerson'))['userEmail'] : {}} 
@@ -223,7 +223,7 @@ class App extends React.Component{
                     <Route path="/messenger"><Messenger onClickTopbarImg={onClickTopbarImg} /></Route>
                     <Route path="/profile"><Profile /></Route>
                     <Route path="/user"><User allUsers={this.state.allUsers}/></Route>
-                    <div>GUUGUG</div>
+                    <div>AAAAAAAAAAAAAAAAAAAAAAA</div>
                 </BrowserRouter>
             </StoreContext.Provider>
           )
