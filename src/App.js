@@ -213,7 +213,7 @@ class App extends React.Component{
             <StoreContext.Provider value={stateAndFunc}> 
                 <BrowserRouter>
                     <Route path="/timeline"><Home /></Route>
-                    <Route path="https://loraxavgn.github.io/MySoc/">
+                    <Route path="/MySoc">
                         <Login 
                             clickLoginButton={clickLoginButton} 
                             currentPerson={localStorage.getItem('currentPerson') ? JSON.parse(localStorage.getItem('currentPerson'))['userEmail'] : {}} 

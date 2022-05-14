@@ -50,7 +50,7 @@ export default function Topbar() {
               <span className="topbarIconBadge">1</span>
             </div>
           </div>
-          <NavLink to="/">
+          <NavLink to="/MySoc">
             <img 
               onClick={SF.onClickTopbarImg} 
               src={SF.currentPerson.icon || (SF.currentPerson.userId && "assets/person/noAvatar.png")} 
