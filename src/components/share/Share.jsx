@@ -33,7 +33,7 @@ export default function Share(props) {
           <div className="shareTop">
             <img 
               className="shareProfileImg" 
-              src={SF.currentPerson.icon}
+              src={SF.currentPerson?.icon || "https://yt3.ggpht.com/a/AGF-l79TeE4LZ7QszKiy-EgX9-pXgQTunY_cNGLQfg=s900-c-k-c0xffffffff-no-rj-mo"}
               alt="" 
             />
             <input
@@ -47,6 +47,7 @@ export default function Share(props) {
           {photoFlag && !photoButton && 
           <>
             <input 
+              onKeyPress={e => { if(e.key == 'Enter') { onClickPhotoButton(true) }}}
               value={sharePhotoLink} 
               onChange={e => changeSharePhotoLink(e.currentTarget.value)} 
               placeholder="Введите ссылку картинки..." 
@@ -67,6 +68,7 @@ export default function Share(props) {
           {locationFlag && !locationButtonOk &&
             <>
               <input
+                onKeyPress={e => { if(e.key == 'Enter') { onClickLocationButtonOk(true) }}}
                 placeholder="Your location..."
                 className="shareLocation"
                 value={locationText} 

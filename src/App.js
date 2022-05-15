@@ -5,6 +5,7 @@ import Register from "./pages/register/Register";
 import Messenger from "./pages/messenger/Messenger";
 import User from "./pages/user/user"
 import { BrowserRouter, Route} from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import React from 'react'
 import base from './base'
 import StoreContext from "./StoreContext";
@@ -34,19 +35,22 @@ class App extends React.Component{
     }
 
     render(){
-
-        const clickRegisterButton = (userName, userEmail, userPassword) => {
-            const userId = new Date().valueOf(); // создание уникального Id
-            const newPerson = {                  // присваивание начального значения нового пользователя
-                userName: userName, userEmail: userEmail, userPassword: userPassword, userId: userId,
-                posts: [], userName: '', status: '', city: '', country: '', relationship: '',
-                coverUrl: '', icon: '', online: true, followers: [], messages: [],
-                }
-            const allUsers = {...this.state.allUsers};  // создание копии state allUsers
-            allUsers[userId] = newPerson;               // добавление нового пользователя в копию
-            this.setState({allUsers});                  // изменение state компоненты App
-            // добавление текущего пользователя в локальное хранилище
-            localStorage.setItem('currentPerson', JSON.stringify({...newPerson}));
+        
+        const clickRegisterButton = (userName, userEmail, userPassword, repeatPassword) => {
+            if(userPassword == repeatPassword){
+                const userId = new Date().valueOf(); 
+                const newPerson = {                  
+                    userName: userName, userEmail: userEmail, userPassword: userPassword, userId: userId,
+                    posts: [], status: '', city: '', country: '', relationship: '',
+                    coverUrl: '', icon: '', online: true, followers: [], messages: [],
+                    }
+                const allUsers = {...this.state.allUsers};  
+                allUsers[userId] = newPerson;               
+                this.setState({allUsers});                  
+                localStorage.setItem('currentPerson', JSON.stringify({...newPerson}));
+                // navigate('/profile');
+            }
+            else alert('Passwords do not match!')
         }
 
         const clickLoginButton = (thisUserEmail, thisUserPassword) => {
@@ -75,7 +79,7 @@ class App extends React.Component{
         const onClickTopbarImg = () => {
             // получение информации о текущем пользователе
             const localCurrentPerson = JSON.parse(localStorage.getItem('currentPerson'));
-            const userId = localCurrentPerson.userId;  // получение Id текущего пользователя
+            const userId = localCurrentPerson?.userId;  // получение Id текущего пользователя
             const currentPerson = {};   // создание объекта пустого пользователя
             // изменение действующего пользователя на пустого в локальном хранилище
             localStorage.setItem('currentPerson', JSON.stringify(currentPerson));
@@ -120,6 +124,7 @@ class App extends React.Component{
             const localCurrentPerson = JSON.parse(localStorage.getItem('currentPerson'));
             const userId = localCurrentPerson.userId;
             let newPosts = localCurrentPerson.posts;
+            if (newPosts[e.currentTarget.getAttribute("index")] ? newPosts[e.currentTarget.getAttribute("index")].like ? 1 : 0 : 0)
             newPosts[e.currentTarget.getAttribute("index")].like = like;
             const currentPerson = {...localCurrentPerson, posts: newPosts}
             localStorage.setItem('currentPerson', JSON.stringify(currentPerson));

@@ -11,7 +11,7 @@ export default function Rightbar(props) {
       <StoreContext.Consumer>
       {
         (SF) => {
-          const followersArr = SF.currentPerson.followers;
+          const followersArr = SF.currentPerson.followers || [];
           let newFolArr = [];
           followersArr.map(id => {
             if(SF.allUsers[id] ? SF.allUsers[id].online ? 1 : 0 : 0) newFolArr.push(SF.allUsers[id]);
@@ -20,12 +20,12 @@ export default function Rightbar(props) {
           return(
             <>
               <div className="birthdayContainer">
-                <img className="birthdayImg" src="assets/gift.png" alt="" />
+                <img className="birthdayImg" src="https://herlitzbags.ru/design/@templatesforall/images/gift.svg" alt="" />
                 <span className="birthdayText">
-                  <b>Lera Savinova</b> have a birthday today.
+                No one has a birthday today.
                 </span>
               </div>
-              <img className="rightbarAd" src="assets/ad.png" alt="" />
+              <img className="rightbarAd" src="https://upjourney.com/wp-content/uploads/2021/03/how-to-be-a-social-butterfly.jpg" alt="" />
               <h4 className="rightbarTitle">Online Friends</h4>
               <ul className="rightbarFriendList">
                 {SF.allUsers && newFolArr.map((u) => (
@@ -82,11 +82,12 @@ export default function Rightbar(props) {
                 <span 
                   className="rightbarInfoValue"
                   onDoubleClick={() => changeUserCityFlag(true)}>
-                  {SF.currentPerson.city || (SF.currentPerson.userId && 'Your city...')}
+                  {SF.currentPerson?.city || (SF.currentPerson?.userId && 'Your city...')}
                 </span>}
                 {userCityFlag && 
                   <div className='inputPlusBtnRightbar'>
                     <input 
+                      onKeyPress={e => { if(e.key == 'Enter') { onClickCityButtonNew() }}}
                       value={userCityText} 
                       onChange={e => changeUserCityText(e.currentTarget.value)} 
                       placeholder={SF.currentPerson.city || "Your city..."} 
@@ -108,11 +109,12 @@ export default function Rightbar(props) {
                 <span 
                   className="rightbarInfoValue"
                   onDoubleClick={() => changeUserCountryFlag(true)}>
-                  {SF.currentPerson.country || (SF.currentPerson.userId && 'Your country...')}
+                  {SF.currentPerson?.country || (SF.currentPerson?.userId && 'Your country...')}
                 </span>}
                 {userCountryFlag && 
                   <div className='inputPlusBtnRightbar'>
                     <input 
+                      onKeyPress={e => { if(e.key == 'Enter') { onClickCountryButtonNew() }}}
                       value={userCountryText} 
                       onChange={e => changeUserCountryText(e.currentTarget.value)} 
                       placeholder={SF.currentPerson.country || "Your country..."} 
@@ -134,11 +136,12 @@ export default function Rightbar(props) {
                 <span 
                   className="rightbarInfoValue"
                   onDoubleClick={() => changeUserRelationshipFlag(true)}>
-                  {SF.currentPerson.relationship || (SF.currentPerson.userId && 'Your relationship...')}
+                  {SF.currentPerson?.relationship || (SF.currentPerson?.userId && 'Your relationship...')}
                 </span>}
                 {userRelationshipFlag && 
                   <div className='inputPlusBtnRightbar'>
                     <input 
+                      onKeyPress={e => { if(e.key == 'Enter') { onClickRelationshipButtonNew() }}}
                       value={userRelationshipText} 
                       onChange={e => changeUserRelationshipText(e.currentTarget.value)} 
                       placeholder={SF.currentPerson.relationship || "Your relationship..."} 

@@ -9,6 +9,7 @@ import StoreContext from "../../StoreContext"
 export default function Messenger() {
 
   const[message, changeMessage] = useState(''); 
+  const[searchText, changeSearchText] = useState('');
 
   return (
     <StoreContext.Consumer>
@@ -34,9 +35,14 @@ export default function Messenger() {
             <div className="messenger">
               <div className="chatMenu">
                 <div className="chatMenuWrapper">
-                  <input placeholder="Search for friends" className="chatMenuInput" />
+                  <input 
+                    value={searchText}
+                    onChange={e => changeSearchText(e.currentTarget.value)}
+                    placeholder="Search for friends" 
+                    className="chatMenuInput" 
+                  />
                     <div>
-                      <Conversation />
+                      <Conversation searchText={searchText}/>
                     </div>
                 </div>
               </div>

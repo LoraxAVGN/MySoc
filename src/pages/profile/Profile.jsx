@@ -56,13 +56,14 @@ export default function Profile() {
                 <div className="profileCover">
                   <img
                     className="profileCoverImg"
-                    src={SF.currentPerson.coverUrl || (SF.currentPerson.userId && "assets/person/noCover.jpg")}
+                    src={SF.currentPerson?.coverUrl || (SF.currentPerson?.userId && "https://plitka.by/upload/iblock/ebf/ebfbf270daa02e33a7bc4f58ffc982c6.jpg")}
                     onDoubleClick={() => changeProfileCoverImgFlag(true)}
                     alt=""
                   />
                 {profileCoverImgFlag && 
                   <div className='inputPlusBtnCover'>
                     <input 
+                      onKeyPress={e => { if(e.key == 'Enter') { onClickCoverButtonNew() }}}
                       value={profileCoverImgText} 
                       onChange={e => changeProfileCoverImgText(e.currentTarget.value)} 
                       placeholder={SF.currentPerson.coverUrl || "coverUrl..."} 
@@ -79,13 +80,14 @@ export default function Profile() {
                 }
                   <img
                     className="profileUserImg"
-                    src={SF.currentPerson.icon || (SF.currentPerson.userId && "assets/person/noAvatar.png")}
+                    src={SF.currentPerson?.icon || (SF.currentPerson?.userId && "https://yt3.ggpht.com/a/AGF-l79TeE4LZ7QszKiy-EgX9-pXgQTunY_cNGLQfg=s900-c-k-c0xffffffff-no-rj-mo")}
                     onDoubleClick={() => changeProfileIconFlag(true)}
                     alt=""
                   />
                   {profileIconFlag && 
                   <div className='inputPlusBtnIcon'>
                     <input 
+                      onKeyPress={e => { if(e.key == 'Enter') { onClickProfileIconButtonNew() }}}
                       value={profileIconText} 
                       onChange={e => changeProfileIconText(e.currentTarget.value)} 
                       placeholder={SF.currentPerson.coverUrl || "iconUrl..."} 
@@ -106,12 +108,13 @@ export default function Profile() {
                   <h4 
                     className="profileInfoName" 
                     onDoubleClick={() => changeUserNameFlag(true)}>
-                    {SF.currentPerson.userName || (SF.currentPerson.userId && "unknown")}
+                    {SF.currentPerson?.userName || (SF.currentPerson?.userId && "unknown")}
                   </h4>
                 }
                 {userNameFlag && 
                   <div className='inputPlusBtn'>
                     <input 
+                      onKeyPress={e => { if(e.key == 'Enter') { onClickNameButtonNew() }}}
                       value={userNameText} 
                       onChange={e => changeUserNameText(e.currentTarget.value)} 
                       placeholder={SF.currentPerson.userName || "Username..."} 
@@ -130,12 +133,13 @@ export default function Profile() {
                   <span 
                     className="profileInfoDesc" 
                     onDoubleClick={() => changeUserStatusFlag(true)}>
-                    {SF.currentPerson.status || (SF.currentPerson.userId && "Your status...")}
+                    {SF.currentPerson?.status || (SF.currentPerson?.userId && "Your status...")}
                   </span>
                 }
                 {userStatusFlag && 
                   <div className='inputPlusBtnStatus'>
                     <input 
+                      onKeyPress={e => { if(e.key == 'Enter') {onClickStatusButtonNew('status')}}}
                       value={userStatusText} 
                       onChange={e => changeUserStatusText(e.currentTarget.value)} 
                       placeholder={SF.currentPerson.status || "Your status..."} 

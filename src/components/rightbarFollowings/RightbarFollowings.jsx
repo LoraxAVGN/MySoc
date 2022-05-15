@@ -9,7 +9,7 @@ export default function RightbarFollowings(){
         {
             (SF) => (
             <div className="rightbarFollowings">
-                {SF.currentPerson.followers ? SF.currentPerson.followers.map(id => 
+                {SF.currentPerson?.followers ? SF.currentPerson.followers.map(id => 
                     <NavLink className="usersLinks" to="/user">
                         <div onClick={() => SF.onClickUser(id)} className="rightbarFollowing">
                         <img

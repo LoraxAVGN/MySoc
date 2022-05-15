@@ -24,9 +24,7 @@ export default function Register(props) {
             <input value={userEmail} onChange={e => setUserEmail(e.currentTarget.value)} placeholder="Email" className="loginInput" />
             <input value={userPassword} onChange={e => setUserPassword(e.currentTarget.value)} placeholder="Password" className="loginInput" />
             <input value={userPasswordAgain} onChange={e => setUserPasswordAgain(e.currentTarget.value)} placeholder="Password Again" className="loginInput" />
-            <NavLink to="/profile">
-              <button onClick={() => props.clickRegisterButton(userName, userEmail, userPassword)} className="loginButton">Sign Up</button>
-            </NavLink>
+              <button onClick={() => props.clickRegisterButton(userName, userEmail, userPassword, userPasswordAgain)} className="loginButton">Sign Up</button>
             <NavLink className="loginRegisterButtonLink" to="/MySoc">
               <button className="loginRegisterButton">
                 Log into Account
