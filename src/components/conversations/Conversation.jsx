@@ -8,8 +8,7 @@ export default function Conversation({searchText}) {
     <StoreContext.Consumer>
         {
         (SF) => {
-
-          const idArr = [...SF?.currentPerson?.followers];
+          const idArr = SF.currentPerson ? SF.currentPerson.followers ? [...SF?.currentPerson?.followers] : [] : [];
           let searchArr = [];
           idArr.map(id => {
             searchArr.push(SF.allUsers[id]?.userName)

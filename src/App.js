@@ -4,8 +4,7 @@ import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
 import Messenger from "./pages/messenger/Messenger";
 import User from "./pages/user/user"
-import { BrowserRouter, Route} from 'react-router-dom';
-import { useNavigate } from 'react-router';
+import { Route, useHistory, withRouter} from 'react-router-dom';
 import React from 'react'
 import base from './base'
 import StoreContext from "./StoreContext";
@@ -35,9 +34,12 @@ class App extends React.Component{
     }
 
     render(){
-        
         const clickRegisterButton = (userName, userEmail, userPassword, repeatPassword) => {
-            if(userPassword == repeatPassword){
+            if(userName.length < 8) alert('The Username must contain at least 8 symbols!');
+            else if(!(/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i).test(userEmail)) alert('Enter the Email correctly!')
+            else if (userPassword.length < 8) alert('The Password must contain at least 8 symbols!')
+            else if(userPassword != repeatPassword) alert('Passwords do not match!')
+            else {
                 const userId = new Date().valueOf(); 
                 const newPerson = {                  
                     userName: userName, userEmail: userEmail, userPassword: userPassword, userId: userId,
@@ -48,9 +50,8 @@ class App extends React.Component{
                 allUsers[userId] = newPerson;               
                 this.setState({allUsers});                  
                 localStorage.setItem('currentPerson', JSON.stringify({...newPerson}));
-                // navigate('/profile');
+                this.props.history.push('/profile');
             }
-            else alert('Passwords do not match!')
         }
 
         const clickLoginButton = (thisUserEmail, thisUserPassword) => {
@@ -74,6 +75,7 @@ class App extends React.Component{
             if(loginFlag){
                 alert('Email или Password введен неверно...') // оповещение
             }
+            else this.props.history.push('/profile');
         }
 
         const onClickTopbarImg = () => {
@@ -216,7 +218,6 @@ class App extends React.Component{
 
         return (
             <StoreContext.Provider value={stateAndFunc}> 
-                <BrowserRouter>
                     <Route path="/timeline"><Home /></Route>
                     <Route path="/MySoc">
                         <Login 
@@ -228,10 +229,9 @@ class App extends React.Component{
                     <Route path="/messenger"><Messenger onClickTopbarImg={onClickTopbarImg} /></Route>
                     <Route path="/profile"><Profile /></Route>
                     <Route path="/user"><User allUsers={this.state.allUsers}/></Route>
-                </BrowserRouter>
             </StoreContext.Provider>
           )
     }
 }
 
-export default App;
+export default withRouter(App);
