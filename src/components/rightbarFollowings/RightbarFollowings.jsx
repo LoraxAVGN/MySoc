@@ -14,14 +14,10 @@ export default function RightbarFollowings(){
                 return(
                 <div className="rightbarFollowings">
                     {SF?.allUsers[personId]?.followers ? SF?.allUsers[personId]?.followers?.map(id => 
-                        <NavLink className="usersLinks" to="/user">
+                        <NavLink key={id} className="usersLinks" to="/user">
                             <div onClick={() => SF.onClickUser(id)} className="rightbarFollowing">
                             <img
-                                src={SF.allUsers[id] ? 
-                                        SF.allUsers[id].icon ? 
-                                        SF.allUsers[id].icon 
-                                        : '' 
-                                    : ''}
+                                src={SF?.allUsers[id]?.icon || "https://yt3.ggpht.com/a/AGF-l79TeE4LZ7QszKiy-EgX9-pXgQTunY_cNGLQfg=s900-c-k-c0xffffffff-no-rj-mo"}
 
                                 alt=""
                                 className="rightbarFollowingImg"

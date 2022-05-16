@@ -28,12 +28,7 @@ export default function Conversation({searchText}) {
                       className={id==SF.currentUser?.userId?"activeChat":"conversation"}>
                       <img
                         className="conversationImg"
-                        src={
-                          SF.allUsers[id] ? 
-                            SF.allUsers[id].icon ? 
-                            SF.allUsers[id].icon 
-                            : '' 
-                          : ''}
+                        src={SF?.allUsers[id]?.icon || "https://yt3.ggpht.com/a/AGF-l79TeE4LZ7QszKiy-EgX9-pXgQTunY_cNGLQfg=s900-c-k-c0xffffffff-no-rj-mo"}
                         alt=""
                       />
                       <span className="conversationName">

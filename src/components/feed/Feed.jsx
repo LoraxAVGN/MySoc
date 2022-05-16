@@ -41,7 +41,6 @@ export default function Feed(props) {
                 />
               ))}
               {props.user && SF?.allUsers[userId]?.posts?.map((p, index) => {
-                {console.log(index)}
                 return(
                 <Post 
                   user={props.user}

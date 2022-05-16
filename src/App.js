@@ -29,10 +29,6 @@ class App extends React.Component{
         base.removeBinding(this.ref);
     }
 
-    componentDidUpdate(){
-        console.log(this.state)
-    }
-
     render(){
         const clickRegisterButton = (userName, userEmail, userPassword, repeatPassword) => {
             if(userName.length < 8) alert('The Username must contain at least 8 symbols!');
