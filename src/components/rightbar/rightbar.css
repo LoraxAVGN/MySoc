@@ -94,3 +94,9 @@
   padding-top: 0px;
   padding-bottom: 0px;
 }
+
+@media (max-width: 570px) {
+  .rightbar{
+    display: none;
+  }
+}

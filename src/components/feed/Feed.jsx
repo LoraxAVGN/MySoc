@@ -12,9 +12,12 @@ export default function Feed(props) {
     {
       (SF) => 
       {
+        const userId = SF?.currentUser?.userId;
+        const personId = SF?.currentPerson?.userId;
+
         let followersPosts = [];
         if(props.home){
-          const followersArr = SF.currentPerson ? SF.currentPerson.followers ? SF.currentPerson.followers : [] : [] ;
+          const followersArr = SF?.allUsers[personId]?.followers || [];
           let newFolPosts = [];
           followersArr.map(id => {
             if(SF.allUsers[id] ? SF.allUsers[id].posts ? 1 : 0 : 0) 
@@ -27,32 +30,34 @@ export default function Feed(props) {
           <div className="feed">
             <div className="feedWrapper">
               {props.profile && <Share onClickShare={SF.onClickShare}/>}
-              {!props.home && !props.user && SF.currentPerson?.posts ? SF.currentPerson.posts.map((p, index) => (
+              {props.profile && SF?.allUsers[personId]?.posts?.map((p, index) => (
                 <Post 
                   profile
                   index={index} 
-                  key={p?.id} 
+                  key={p?.id + index} 
                   post={p} 
                   onClickDelBut={SF.onClickDelBut}
                   onClickLike={SF.onClickLike} 
                 />
-              )) : null}
-              {!props.home && props.user && SF.currentUser.posts ? SF.currentUser.posts.map((p, index) => (
+              ))}
+              {props.user && SF?.allUsers[userId]?.posts?.map((p, index) => {
+                {console.log(index)}
+                return(
                 <Post 
                   user={props.user}
                   index={index} 
-                  key={p?.id} 
+                  key={p?.id + index} 
                   post={p} 
                   onClickDelBut={SF.onClickDelBut}
                   onClickLike={SF.onClickLike} 
-                />
-              )) : null}
-              {props.home && followersPosts.map((p, index) => (
+                />)
+              })}
+              {props.home && followersPosts?.map((p, index) => (
                 <Post 
                   timeline
                   user={props.user}
                   index={index} 
-                  key={p.id} 
+                  key={p.id + index} 
                   post={p} 
                   onClickDelBut={SF.onClickDelBut}
                   onClickLike={SF.onClickLike} 

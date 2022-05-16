@@ -16,3 +16,13 @@
   .usersLinks{
     color: black;
   }
+
+  @media (max-width: 768px) {
+    .sidebarFriendName {
+      display: none;
+    }
+    .sidebarFriendImg{
+      margin-left: -5px;
+      margin-right: 0px;
+    }
+  }

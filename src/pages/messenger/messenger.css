@@ -41,7 +41,7 @@
 
 .chatMessageInput {
   width: 80%;
-  height: 90px;
+  height: 40px;
   padding: 10px;
 }
 
@@ -53,6 +53,7 @@
   cursor: pointer;
   background-color: teal;
   color: white;
+  margin-left: 10px;
 }
 
 .chatOnline {
@@ -89,5 +90,11 @@
 
   .chatOnline{
     flex: 1px;
+  }
+}
+
+@media (max-width: 500px) {
+  .chatOnline{
+    display: none;
   }
 }

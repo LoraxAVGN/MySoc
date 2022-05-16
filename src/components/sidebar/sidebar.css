@@ -59,4 +59,12 @@
   list-style: none;
 }
 
+@media (max-width: 768px) {
+  .sidebarListItemText, .sidebarButton, .sidebarHr {
+    display: none;
+  }
+  .sidebar{
+    max-width: 72px;
+  }
+}
 

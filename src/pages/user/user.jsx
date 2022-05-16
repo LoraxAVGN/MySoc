@@ -13,6 +13,8 @@ export default function Profile(props) {
     {
       (SF) => {
 
+        const userId = SF?.currentUser?.userId || "";
+
         return (
         <>
           <Topbar/>
@@ -23,21 +25,21 @@ export default function Profile(props) {
                 <div className="profileCover">
                   <img
                     className="profileCoverImg"
-                    src={SF.currentUser.coverUrl || (SF.currentUser.userId && "assets/person/noCover.jpg")}
+                    src={SF?.allUsers[userId]?.coverUrl || (userId && "https://plitka.by/upload/iblock/ebf/ebfbf270daa02e33a7bc4f58ffc982c6.jpg")}
                     alt=""
                   />
                   <img
                     className="profileUserImg"
-                    src={SF.currentUser.icon || (SF.currentUser.userId && "assets/person/noAvatar.png")}
+                    src={SF?.allUsers[userId]?.icon || (userId && "https://yt3.ggpht.com/a/AGF-l79TeE4LZ7QszKiy-EgX9-pXgQTunY_cNGLQfg=s900-c-k-c0xffffffff-no-rj-mo")}
                     alt=""
                   />
                 </div>
                 <div className="profileInfo">
                   <h4 className="profileInfoName">
-                    {SF.currentUser.userName || (SF.currentUser.userId && "unknown")}
+                    {SF?.allUsers[userId]?.userName || (userId && "unknown")}
                   </h4>
                   <span className="profileInfoDesc">
-                    {SF.currentUser.status || (SF.currentUser.userId && "Your status...")}
+                    {SF?.allUsers[userId]?.status || (userId && "Your status...")}
                   </span>
               </div>
             </div>

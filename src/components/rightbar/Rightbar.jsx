@@ -72,6 +72,8 @@ export default function Rightbar(props) {
             changeUserRelationshipText('');
           }
 
+          const personId = SF.currentPerson?.userId || ""; 
+
           return (
           <>
             <h4 className="rightbarTitle">User information</h4>
@@ -82,7 +84,7 @@ export default function Rightbar(props) {
                 <span 
                   className="rightbarInfoValue"
                   onDoubleClick={() => changeUserCityFlag(true)}>
-                  {SF.currentPerson?.city || (SF.currentPerson?.userId && 'Your city...')}
+                  {SF?.allUsers[personId]?.city || (SF.currentPerson?.userId && 'Your city...')}
                 </span>}
                 {userCityFlag && 
                   <div className='inputPlusBtnRightbar'>
@@ -109,7 +111,7 @@ export default function Rightbar(props) {
                 <span 
                   className="rightbarInfoValue"
                   onDoubleClick={() => changeUserCountryFlag(true)}>
-                  {SF.currentPerson?.country || (SF.currentPerson?.userId && 'Your country...')}
+                  {SF?.allUsers[personId]?.country || (SF.currentPerson?.userId && 'Your country...')}
                 </span>}
                 {userCountryFlag && 
                   <div className='inputPlusBtnRightbar'>
@@ -136,7 +138,7 @@ export default function Rightbar(props) {
                 <span 
                   className="rightbarInfoValue"
                   onDoubleClick={() => changeUserRelationshipFlag(true)}>
-                  {SF.currentPerson?.relationship || (SF.currentPerson?.userId && 'Your relationship...')}
+                  {SF?.allUsers[personId]?.relationship || (SF.currentPerson?.userId && 'Your relationship...')}
                 </span>}
                 {userRelationshipFlag && 
                   <div className='inputPlusBtnRightbar'>

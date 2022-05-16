@@ -26,8 +26,9 @@ export default function Messenger() {
             SF.onSendClick(SF.currentUser.userId, message)
           }
 
-          const userId = SF.currentUser ? SF.currentUser.userId ? SF.currentUser.userId : '' : '';
-          const mesArr = SF.currentPerson.messages ? SF.currentPerson.messages[userId] ? SF.currentPerson.messages[userId] : [] : [];
+          const userId = SF?.currentUser?.userId || "";
+          const personId = SF?.currentPerson?.userId || "";
+          const mesArr = SF?.allUsers[personId]?.messages ? SF?.allUsers[personId]?.messages[userId] ? SF?.allUsers[personId]?.messages[userId] : [] : [];
           
           return(
           <>
@@ -60,6 +61,7 @@ export default function Messenger() {
                         : []}
                       </div>
                     </div>
+                    { SF?.allUsers[personId]?.followers &&
                     <div className="chatBoxBottom">
                       <textarea
                         onKeyPress={e => {
@@ -78,6 +80,7 @@ export default function Messenger() {
                         Send
                       </button>
                     </div>
+                    }
                   </>
                 </div>
               </div>

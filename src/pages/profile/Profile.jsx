@@ -46,6 +46,8 @@ export default function Profile() {
           changeProfileIconText('');
         }
 
+        const personId = SF.currentPerson?.userId || ""; 
+
         return (
         <>
           <Topbar/>
@@ -56,7 +58,7 @@ export default function Profile() {
                 <div className="profileCover">
                   <img
                     className="profileCoverImg"
-                    src={SF.currentPerson?.coverUrl || (SF.currentPerson?.userId && "https://plitka.by/upload/iblock/ebf/ebfbf270daa02e33a7bc4f58ffc982c6.jpg")}
+                    src={SF?.allUsers[personId]?.coverUrl || (SF.currentPerson?.userId && "https://plitka.by/upload/iblock/ebf/ebfbf270daa02e33a7bc4f58ffc982c6.jpg")}
                     onDoubleClick={() => changeProfileCoverImgFlag(true)}
                     alt=""
                   />
@@ -80,7 +82,7 @@ export default function Profile() {
                 }
                   <img
                     className="profileUserImg"
-                    src={SF.currentPerson?.icon || (SF.currentPerson?.userId && "https://yt3.ggpht.com/a/AGF-l79TeE4LZ7QszKiy-EgX9-pXgQTunY_cNGLQfg=s900-c-k-c0xffffffff-no-rj-mo")}
+                    src={SF?.allUsers[personId]?.icon || (SF.currentPerson?.userId && "https://yt3.ggpht.com/a/AGF-l79TeE4LZ7QszKiy-EgX9-pXgQTunY_cNGLQfg=s900-c-k-c0xffffffff-no-rj-mo")}
                     onDoubleClick={() => changeProfileIconFlag(true)}
                     alt=""
                   />
@@ -108,7 +110,7 @@ export default function Profile() {
                   <h4 
                     className="profileInfoName" 
                     onDoubleClick={() => changeUserNameFlag(true)}>
-                    {SF.currentPerson?.userName || (SF.currentPerson?.userId && "unknown")}
+                    {SF?.allUsers[personId]?.userName || (SF.currentPerson?.userId && "unknown")}
                   </h4>
                 }
                 {userNameFlag && 
@@ -133,7 +135,7 @@ export default function Profile() {
                   <span 
                     className="profileInfoDesc" 
                     onDoubleClick={() => changeUserStatusFlag(true)}>
-                    {SF.currentPerson?.status || (SF.currentPerson?.userId && "Your status...")}
+                    {SF?.allUsers[personId]?.status || (SF.currentPerson?.userId && "Your status...")}
                   </span>
                 }
                 {userStatusFlag && 
