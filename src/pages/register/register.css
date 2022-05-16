@@ -98,3 +98,9 @@
     display: none;
   }
 }
+
+@media (max-width: 400px) {
+  .loginRight{
+    margin-left: -22px;
+  }
+}
